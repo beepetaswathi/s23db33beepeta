@@ -1,0 +1,20 @@
+extends layout
+
+block content
+    h1= title
+    -
+     let cakes  = [{"cake_Name": "strawberrycake", "cake_flavour": "strawberry", "cost": "$25",},
+      { "cake_Name": "chocolatecake", "cake_flavour": "chocolate", "cost": "$20",}, 
+      {"cake_Name": "butterscotchcake", "cake_flavour": "butterscotch", "cost": "$30",},]
+    div(class= "container-fluid")
+        div(class = "row")  
+            each item, index in cakes
+                div(class= "col-sm-2",onclick=`cakes(${index})`) Name:  #{item.cake_Name}
+                div(class= "col-sm-2",onclick=`cakes(${index})`)  flavour:  #{item.cake_flavour}
+                div(class= "col-sm-2",onclick=`cakes(${index})`)  cost:   #{item.cost}
+
+
+    script. 
+        function cakes(Index){
+            alert(`Are you lover of cakes  ${Index+1}`)
+            }
