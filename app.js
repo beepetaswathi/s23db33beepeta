@@ -11,6 +11,7 @@ var cakesRouter = require('./routes/cakes');
 var boardRouter = require('./routes/board');
 var selectorRouter = require('./routes/selector');
 var app = express();
+var cakes = require("./models/cakes");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -27,6 +28,13 @@ app.use('/users', usersRouter);
 app.use('/cakes', cakesRouter);
 app.use('/board', boardRouter);
 app.use('/selector', selectorRouter);
+require('dotenv').config();
+const connectionString =
+process.env.MONGO_CON
+mongoose = require('mongoose');
+mongoose.connect(connectionString,
+{useNewUrlParser: true,
+useUnifiedTopology: true});
 
 
 // catch 404 and forward to error handler
@@ -44,5 +52,25 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+//Get the default connection
+var db = mongoose.connection;
+//Bind connection to error event
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once("open", function(){
+console.log("Connection to DB succeeded")});
+// We can seed the collection if needed on server start
+async function recreateDB(){
+ // Delete everything
+ await cakes.deleteMany();
+ let instance1 = new cakes({cake_Name:"strawberrycake",cake_flavour:'strawberry',cost:25});
+ let instance2 = new cakes({cake_Name:"chocolatecake",cake_flavour:'chocolate',cost:20});
+ let instance3 = new cakes({cake_Name:"butterscotchcake",cake_flavour:'butterscotch',cost:30});
+ 
+ instance1.save().then( () => { console.log('First Object is created'); }).catch( (e) => { console.log('There was an error', e.message); });
+ instance2.save().then( () => { console.log('Second Object is created'); }).catch( (e) => { console.log('There was an error', e.message); })
+ instance3.save().then( () => { console.log('Third Object is created'); }).catch( (e) => { console.log('There was an error', e.message); })
+}
+let reseed = true;
+if (reseed) { recreateDB();}
 
 module.exports = app;
