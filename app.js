@@ -10,8 +10,9 @@ var usersRouter = require('./routes/users');
 var cakesRouter = require('./routes/cakes');
 var boardRouter = require('./routes/board');
 var selectorRouter = require('./routes/selector');
-var app = express();
 var cakes = require("./models/cakes");
+var resourceRouter = require('./routes/resource');
+var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -28,6 +29,8 @@ app.use('/users', usersRouter);
 app.use('/cakes', cakesRouter);
 app.use('/board', boardRouter);
 app.use('/selector', selectorRouter);
+app.use('/resource',resourceRouter);
+
 require('dotenv').config();
 const connectionString =
 process.env.MONGO_CON
