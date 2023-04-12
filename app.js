@@ -10,7 +10,7 @@ var usersRouter = require('./routes/users');
 var cakesRouter = require('./routes/cakes');
 var boardRouter = require('./routes/board');
 var selectorRouter = require('./routes/selector');
-var cakes = require("./models/cakes");
+var cakes = require('./models/cakes');
 var resourceRouter = require('./routes/resource');
 var app = express();
 
@@ -30,6 +30,7 @@ app.use('/cakes', cakesRouter);
 app.use('/board', boardRouter);
 app.use('/selector', selectorRouter);
 app.use('/resource',resourceRouter);
+app.use('/cakes',cakes);
 
 require('dotenv').config();
 const connectionString =

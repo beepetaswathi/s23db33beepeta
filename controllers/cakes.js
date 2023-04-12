@@ -24,8 +24,8 @@ exports.cakes_create_post = async function(req, res) {
     // and require that it be a json object
     // {"cake_Name":"strawberrycake", "cost":25, "cake_flavour":"strawberry"}
     document.cake_Name = req.body.cake_Name;
-    document.cost = req.body.cost;
     document.cake_flavour = req.body.cake_flavour;
+    document.cost = req.body.cost;
     try{
     let result = await document.save();
     res.send(result);
