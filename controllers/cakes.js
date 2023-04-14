@@ -12,9 +12,18 @@ exports.cakes_list = async function(req, res) {
     };
     
 // for a specific cakes.
-exports.cakes_detail = function(req, res) {
-res.send('NOT IMPLEMENTED: cakes detail: ' + req.params.id);
-};
+// for a specific Costume.
+exports.cakes_detail = async function(req, res) {
+    console.log("detail" + req.params.id)
+    try {
+    result = await cakes.findById( req.params.id)
+    res.send(result)
+    } catch (error) {
+    res.status(500)
+    res.send(`{"error": document for id ${req.params.id} not found`);
+    }
+    };
+    
 // Handle cakes create on POST.
 exports.cakes_create_post = async function(req, res) {
     console.log(req.body)
@@ -41,8 +50,25 @@ exports.cakes_delete = function(req, res) {
 res.send('NOT IMPLEMENTED: cakes delete DELETE ' + req.params.id);
 };
 // Handle cakes update form on PUT.
-exports.cakes_update_put = function(req, res) {
-res.send('NOT IMPLEMENTED: cakes update PUT' + req.params.id);
+
+exports.cakes_update_put = async function(req, res) {
+console.log(`update on id ${req.params.id} with body
+${JSON.stringify(req.body)}`)
+try {
+let toUpdate = await cakes.findById( req.params.id)
+// Do updates of properties
+if(req.body.cake_flavour)
+toUpdate.cake_flavour = req.body.cake_flavour;
+if(req.body.cost) toUpdate.cost = req.body.cost;
+if(req.body.cake_Name) toUpdate.cake_Name = req.body.cake_Name;
+let result = await toUpdate.save();
+console.log("Sucess " + result)
+res.send(result)
+} catch (err) {
+res.status(500)
+res.send(`{"error": ${err}: Update for id ${req.params.id}
+failed`);
+}
 };
 // VIEWS
 // Handle a show all view
