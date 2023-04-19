@@ -1,21 +1,24 @@
 extends layout
 block content
   h1= title
-  - let cakesid = toShow._id
-  - let cakes_Name = toShow.cake_Name
-  - let cakescost = toShow.cost
-  - let cakes_flavour = toShow.cake_flavour
-  div
-    div.row
-        div(class='cakesAttr mr-3') cakes ID is:
-        div #{cakesid}
-    div.row
-        div(class='cakesAttr mr-3') cakes_Name is:
-        div #{cakes_Name}
-    div.row
-        div(class='cakesAttr mr-3') cakes_flavour is:
-        div #{cakes_flavour}
-    div.row
-        div(class='cakesAttr mr-3') cakes cost is:
-        div #{cakescost}
+  if(toshow==null)
+    h2 no instance found
+  else
+    - let cakesid = toShow._id
+    - let cakes_Name = toShow.cake_Name
+    - let cakescost = toShow.cost
+    - let cakes_flavour = toShow.cake_flavour
+    div
+        div.row
+            div(class='cakesAttr mr-3') cakes ID is:
+            div #{cakesid}
+        div.row
+            div(class='cakesAttr mr-3') cakes_Name is:
+            div #{cakes_Name}
+        div.row
+            div(class='cakesAttr mr-3') cakes_flavour is:
+            div #{cakes_flavour}
+        div.row
+            div(class='cakesAttr mr-3') cakes cost is:
+            div #{cakescost}
 
