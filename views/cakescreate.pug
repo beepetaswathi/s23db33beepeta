@@ -1,0 +1,35 @@
+extends layout
+
+block content
+ h1= title
+
+ form(id='cakesForm', action="/resource/cakes", method="POST")
+  div.form-group
+    label.cakesAttr(for='cake_Name') cake_Name
+    input#cake_Name(type='text', name='cake_Name')
+  div.form-group
+    label.cakesAttr(for='cake_flavour') cake_flavour
+    input#cake_flavour(type='text', name='cake_flavour')
+  div.form-group
+    label.cakesAttr(for='cost') cakes cost
+    input#cost(type='number', name='cost')
+  input(type="submit")
+
+
+ script.
+  document.forms['cakesForm'].addEventListener('submit', (event) => {
+   event.preventDefault();
+   // TODO do something here to show user that form is being submitted
+   fetch(event.target.action, {
+    method: 'POST',
+    body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+   }).then((resp) => {
+    return resp.json(); // or resp.text() or whatever the server sends
+   }).then((body) => {
+    alert("Save succeded")
+    // TODO handle body
+   }).catch((error) => {
+    // TODO handle error
+    alert("Save failed " + error )
+   });
+  });
