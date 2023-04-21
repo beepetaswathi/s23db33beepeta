@@ -1,19 +1,16 @@
 extends layout
 
 block content
-   h1= title
-    -
-    //- let results  = [{"cake_Name": "strawberrycake", "cake_flavour": "strawberry", "cost": "25",},{ "cake_Name": "chocolatecake", "cake_flavour": "chocolate", "cost": "20",}, {"cake_Name": "butterscotchcake", "cake_flavour": "butterscotch", "cost": "30",},]
-    -let result= results
-    div(class= "container-fluid")
-        div(class = "row")  
-            each item, index in result
-                div(class= "col-sm-2",onclick=`cakes(${index})`) Name:  #{item.cake_Name}
-                div(class= "col-sm-2",onclick=`cakes(${index})`) flavour:  #{item.cake_flavour}
-                div(class= "col-sm-2",onclick=`cakes(${index})`) cost:   #{item.cost}
+  - let cakes = results
+  h1= title
+  div(class="container-fluid")
+  div(class="row m-1")
+    each cake in cakes
+      - let destination = `dispatch(\"/cakes/update?id=${cake._id}\")`
+      div(class="row-sm-2", class="m-1") Cake #{cake.cake_Name}(#{cake.cake_flavour}) is #{cake.cost} 
+        button.btn( class="btn-primary ml-1", onclick= destination) Update
 
-
-    script. 
-        function cakes(Index){
-        alert(`Are you lover of cakes  ${Index+1}`)
-        }
+  script.
+    function dispatch(path){
+      window.location.href=path
+    }
