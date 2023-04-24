@@ -15,7 +15,8 @@ exports.cakes_list = async function(req, res) {
 exports.cakes_view_one_Page = async function(req, res) {
     console.log("single view for id " + req.query.id)
     try{
-    result = await cakes.findById( req.query.id)
+    result = await cakes.findById(req.query.id);
+    // console.log("result66666666666", result);
     res.render('cakesdetail',
     { title: 'Cakes Detail', toShow: result });
     }
@@ -30,7 +31,7 @@ exports.cakes_view_one_Page = async function(req, res) {
 exports.cakes_detail = async function(req, res) {
     console.log("detail" + req.params.id)
     try {
-    result = await cakes.findById( req.params.id)
+    result = await cakes.findById(req.params.id)
     res.send(result)
     } catch (error) {
     res.status(500)

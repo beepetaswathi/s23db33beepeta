@@ -50,11 +50,12 @@ router.get('/login', function (req, res) {
   res.render('login', { title: 'cakes App Login', user: req.user });
 });
 router.post('/login', passport.authenticate('local'), function (req, res) {
-  console.log("return url " + req.session.returnTo);
+  // console.log("return url " + req.session.returnTo);
   if (req.session.returnTo)
     res.redirect(req.session.returnTo);
   res.redirect('/');
 });
+
 router.get('/logout', function (req, res, next) { // use post or delete for better safety
 
   req.logout(function (err) {
@@ -66,7 +67,7 @@ router.get('/logout', function (req, res, next) { // use post or delete for bett
   });
 
 });
-router.get('/ping', function(req, res) {
+router.get('/ping', function (req, res) {
   res.status(200).send("pong!");
 });
 

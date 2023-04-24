@@ -15,18 +15,18 @@ block content
         form(id='cakesForm', action= actionid, method="PUT")
         div.form-group
             label.cakesAttr(for='cake_Name') cakes name
-            input#cake_Name(type='text', name='cake_Name', value= cake_Name )
+            input#cake_Name(type='text' name='cake_Name', value= cake_Name )
         div.form-group
             label.cakesAttr(for='cost') cost
-            input#cost(type='number', name='cost', value= cost )
+            input#cost(type='number' name='cost', value= cost )
         div.form-group
             label.cakesAttr(for='cake_flavour') cakes flavour
-            input#cake_flavour(type='text', name='cake_flavour', value= cake_flavour )
+            input#cake_flavour(type='text' name='cake_flavour', value= cake_flavour )
         input(type="submit")
         script.
             document.forms['cakesForm'].addEventListener('submit', (event) => {
                 event.preventDefault();
-                                        
+
                 fetch(event.target.action, {
                     method: 'PUT',
                     body: new URLSearchParams(new FormData(event.target)) // event.target is the form
@@ -37,6 +37,6 @@ block content
                     // TODO handle body
                 }).catch((error) => {
                     // TODO handle error
-                    alert("Update failed " + error )
+                    alert("Update failed,Look for the valid details of the cakes ")
                 });
             });
