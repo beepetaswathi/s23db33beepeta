@@ -9,7 +9,7 @@ block content
   div(class="container-fluid")
   div(class="row m-1")
     each cake in cakes
-      - let destination = `dispatch(\"/cakes/update/?id=${cake._id}\")`
+      - let destination = `dispatch(\"/cakes/update?id=${cake._id}\")`
       - let detail = `dispatch(\"/cakes/detail/?id=${cake._id}")`
       - let deletecakes = `dispatch(\"/cakes/delete/?id=${cake._id}")`      
       div(class="row-sm-2", class="m-1") cakes #{cake.cake_Name} (#{cake.cake_flavour}) is #{cake.cost}
