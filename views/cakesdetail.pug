@@ -1,9 +1,7 @@
 extends layout
 block content
   h1= title
-  if(toshow==null)
-    h2 no instance found
-  else
+  
     - let cakesid = toShow._id
     - let cakes_Name = toShow.cake_Name
     - let cakescost = toShow.cost

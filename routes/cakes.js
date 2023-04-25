@@ -3,7 +3,7 @@ const cakes_controlers= require('../controllers/cakes');
 var router = express.Router();
 
 
-// A little function to check if we have an authorized user and continue on
+//A little function to check if we have an authorized user and continue on
 //or
 // redirect to login.
 const secured = (req, res, next) => {
@@ -22,8 +22,9 @@ module.exports = router;
 /* GET create cakes page */
 router.get('/create',secured, cakes_controlers.cakes_create_Page);
 
-/* GET create update page */
-router.get('/update',secured, cakes_controlers.cakes_update_Page);
+/* GET update cakes page */
+router.get('/update', secured,cakes_controlers.cakes_update_Page);
+
 
 /* GET delete cakes page */
 router.get('/delete',secured,cakes_controlers.cakes_delete_Page);

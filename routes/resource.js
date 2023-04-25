@@ -15,6 +15,6 @@ router.delete('/cakes/:id', cakes_controller.cakes_delete);
 router.put('/cakes/:id', cakes_controller.cakes_update_put);
 // GET request for one Cakes.
 router.get('/cakes/:id', cakes_controller.cakes_detail);
-// GET request for list of all Costume items.
+// GET request for list of all Cakes items.
 router.get('/cakes', cakes_controller.cakes_list);
 module.exports = router;
