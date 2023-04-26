@@ -5,7 +5,7 @@ block content
   - let cakes = results
   h1= title
   - let create = `dispatch(\"/cakes/create\")`
-  button.btn( class="btn-info", onclick= create) Create details for cakes
+  button.btn( class="btn-info", onclick= create) Add new cakes
   div(class="container-fluid")
   div(class="row m-1")
     each cake in cakes

@@ -105,7 +105,7 @@ async function recreateDB(){
  instance2.save().then( () => { console.log('Second Object is created'); }).catch( (e) => { console.log('There was an error', e.message); })
  instance3.save().then( () => { console.log('Third Object is created'); }).catch( (e) => { console.log('There was an error', e.message); })
 }
-let reseed = true;
+let reseed = false;
 if (reseed) { recreateDB();}
 
 module.exports = app;

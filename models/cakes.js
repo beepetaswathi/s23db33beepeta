@@ -17,7 +17,9 @@ const cakesSchema = mongoose.Schema({
     type: Number,
     required: true,
     unique: true,
-    minLength: [7,"cost is not valid "],
+    min: 1,
+    max: 30
+
     },
     
 });
